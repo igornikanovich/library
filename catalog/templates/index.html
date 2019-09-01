@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<h3>Пользователи:</h3>
+<ul>
+{% for user in user_list %}
+    <li>
+        <a href="{{ user.get_absolute_url }}"> {{ user }}
+    </li>
+{% endfor %}
+</ul>
+
+<p><a href="{% url 'user-create' %}"> Добавить пользователя </a></p>
+
+</body>
+</html>

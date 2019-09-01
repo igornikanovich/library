@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+
+<body>
+
+<h1>Пользователь: {{ user }} </h1>
+<p>{{ user.first_name }} {{ user.last_name }}</p>
+
+<h1>Книги: </h1>
+
+{% if user.books.all %}
+<ul>
+  {% for book in user.books.all %}
+  <li>
+      <a href="{{ book.get_absolute_url }}">{{ book.title }}</a> ({{book.author}})
+  </li>
+  {% endfor %}
+</ul>
+
+{% else %}
+  <p> У пользователя нет книг</p>
+{% endif %}
+
+<a href="{% url 'book-create' %}"> Добавить книгу </a>
+<br>
+<a href="{% url 'index' %}">На главную</a>
+</body>
+</html>
