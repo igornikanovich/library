@@ -11,6 +11,7 @@ from .forms import UserForm
 class UserListView(generic.ListView):
     queryset = User.objects.filter(is_staff='False')
     template_name = 'index.html'
+    paginate_by = 15
 
 
 class UserDetailView(generic.DetailView):
@@ -20,6 +21,7 @@ class UserDetailView(generic.DetailView):
 class BookUpdateView(UpdateView):
     model = Book
     fields = ['title', 'author', 'genre', ]
+    template_name = 'catalog/book_detail.html'
 
     def get_success_url(self):
         return reverse('user-detail', kwargs={'pk': self.object.user.pk})
