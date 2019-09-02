@@ -18,7 +18,7 @@ class Book(models.Model):
     genre = models.CharField(max_length=100)
 
     def get_absolute_url(self):
-        return reverse('book-detail', args=[str(self.id)])
+        return reverse('book-detail', args=[str(self.pk)])
 
     def __str__(self):
         return self.title

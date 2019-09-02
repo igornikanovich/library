@@ -35,13 +35,12 @@ class BookCreateView(CreateView):
 
 class UserCreateView(CreateView):
     def get(self, request, *args, **kwargs):
-        context = {'form': UserForm}
-        return render(request, 'catalog/user_form.html', context)
+        return render(request, 'catalog/user_form.html', {'user_form': UserForm})
 
     def post(self, request, *args, **kwargs):
-        form = UserForm(request.POST)
-        if form.is_valid():
-            user = form.save()
+        user_form = UserForm(request.POST)
+        if user_form.is_valid():
+            user = user_form.save()
             user.save()
             return HttpResponseRedirect(reverse('user-detail', args=[user.pk]))
-        return render(request, 'catalog/user_detail.html', {'form': form})
+        return render(request, 'catalog/user_form.html', {'user_form': user_form})
